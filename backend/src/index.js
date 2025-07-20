@@ -9,6 +9,7 @@ const categoria = require('./routes/categoria.routes')
 const conversiones =  require('./routes/conversion.routes')
 const gastos = require('./routes/gasto.routes')
 const validarEmail = require('./routes/validacionEmail.routes')
+const ComunicateConmigo = require('./routes/comunicate.routes')
 
 require('./db/syncModels')
 
@@ -30,6 +31,8 @@ app.use('/api/categorias', categoria)
 app.use('/api/conversiones', conversiones)
 app.use('/api/gastos', gastos)
 app.use('/api/validacion', validarEmail)
+app.use('/api/comunicacion', ComunicateConmigo)
+
 
 
 app.listen(PORT, '0.0.0.0', () => {

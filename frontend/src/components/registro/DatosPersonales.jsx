@@ -129,7 +129,7 @@ export const DatosPersonales = ({ datos, actualizar, siguiente }) => {
                                     >
                                         <span className="relative z-10 text-lg tracking-wide">Siguiente</span>
                                     </button>
-                                    <Link to='/' className='flex justify-center mt-5 text-gray-200 hover:scale-105'>Iniciar Seccion</Link>
+                                    <Link to='/login' className='flex justify-center mt-5 text-gray-200 hover:scale-105'>Iniciar Sesión</Link>
                                 </div>
                             </div>
                         </form>

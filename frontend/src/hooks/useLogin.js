@@ -7,9 +7,18 @@ import { useNavigate } from 'react-router-dom';
 export const useLogin = (initial) => {
 
     const [formRef, setFormRef] = useState(() => {
-        const saved = localStorage.getItem('Inicio de seccion');
-        return saved ? JSON.parse(saved) : initial;
+
+        try {
+            const saved = localStorage.getItem('Inicio de seccion');
+            if (!saved || saved === 'undefined') return initial
+            return JSON.parse(saved)
+        } catch (error) {
+            console.error('Error al parsear localStorage:', error)
+            return initial
+        }
+
     })
+
     const [showPass, setShowPass] = useState(false)
     const [errores, setErrores] = useState({
         correo: '',
@@ -111,8 +120,9 @@ export const useLogin = (initial) => {
 
 
     useEffect(() => {
-
-        localStorage.setItem('Inicio de seccion', JSON.stringify(formRef))
+        
+        const { correo } = formRef;
+        localStorage.setItem('Inicio de seccion', JSON.stringify({ correo }))
 
     }, [formRef])
 

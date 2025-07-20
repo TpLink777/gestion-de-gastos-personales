@@ -167,6 +167,10 @@ exports.validarEmail = async (req, res) => {
     try {
         const { correo } = req.query
 
+        if (!correo) {
+            return res.status(400).json({ error: 'El correo es obligatorio.' })
+        }
+
         const validacion = await Usuario.findOne({ where: { correo } })
 
         if (validacion) {
@@ -190,7 +194,7 @@ exports.validarEmail = async (req, res) => {
 
 exports.login = async (req, res) => {
 
-    const errors = validationResult(req) 
+    const errors = validationResult(req)
 
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() })

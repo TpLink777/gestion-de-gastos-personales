@@ -29,6 +29,7 @@ exports.envioCodigo = async (req, res) => {
             from: 'Validaciones Finzoo <validaciones@finzoo.site>',
             to: correo,
             subject: 'Tu código de verificación',
+            text: `¡Gracias por elegirnos, ${correo}!\n\nEstamos encantados de darte la bienvenida. falta poco para activar tu cuenta.`,
             html: `
                 <!DOCTYPE html>
             <html lang="es">
@@ -42,7 +43,7 @@ exports.envioCodigo = async (req, res) => {
 
                                 <!-- Header -->
                                 <tr>
-                                    <td style="padding:30px 25px; background-color:#ff7b38; border-radius:8px 8px 0 0;"></td>
+                                    <td style="padding:30px 25px; background-color:#333333; border-radius:8px 8px 0 0;"></td>
                                 </tr>
 
                                 <!-- Cuerpo -->
@@ -53,24 +54,27 @@ exports.envioCodigo = async (req, res) => {
                                             Estamos encantados de darte la bienvenida. Solo falta un paso para activar tu cuenta:
                                         </p>
                                         <h3 style="color:#000; font-size:20px; margin:0 0 10px;">Tu código de verificación:</h3>
-                                        <p style="color:#ff6200; font-size:40px; font-weight:bold; margin:10px 0;">${codigoAleatorio}</p>
+                                        <p style="color:#FB3AA2; font-size:40px; font-weight:bold; margin:10px 0;">${codigoAleatorio}</p>
                                     </td>
                                 </tr>
 
                                 <!-- Footer -->
                                 <tr>
-                                    <td style="padding:20px; background-color:#ff7b38; border-radius:0 0 8px 8px; text-align:center;">
+                                    <td style="padding:20px; background-color:#333333; border-radius:0 0 8px 8px; text-align:center;">
                                         <p style="color:#fff; font-size:13px; margin:5px 0;">© ${new Date().getFullYear()} Todos los derechos reservados.</p>
                                     </td>
                                 </tr>
 
                             </table>
                         </body>
-                    </html>`
+                    </html>`,
+            headers: {
+                'List-Unsubscribe': '<mailto:validaciones@finzoo.site?subject=unsubscribe>'
+            }
         })
 
         if (error) {
-            console.error(error);
+            console.error('Error al enviar el código de verificación:', error);
             return res.status(500).json({ error: 'Error al enviar el email' });
         }
 

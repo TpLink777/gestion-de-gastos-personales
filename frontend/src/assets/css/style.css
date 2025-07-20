@@ -1,12 +1,57 @@
 @import "tailwindcss";
 
 
-
-
 /*---------- Quitar el fondo a los autocompletados --------------*/
+
 input:-webkit-autofill {
     box-shadow: 0 0 0 1000px transparent inset !important;
     -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
     -webkit-text-fill-color: #f3f4f6 !important;
     transition: background-color 5000s ease-in-out 0s;
+}
+
+
+/*---------- fuente --------------*/
+
+@font-face {
+    font-family: 'mooli';
+    src: url('../fonts/Mooli-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'mooli', sans-serif;
+}
+
+/*---------- Quitar la barra del timeline, y algunas modificaciones a su layout --------------*/
+
+.ToolbarWrapper-sc-cif21b-6 {
+    display: none !important;
+}
+
+.TimelineContentDetails-sc-d7qjm1-7 {
+    background-color: #333333 !important;
+    color: white !important;
+
+}
+
+.TitleWrapper-sc-13izrht-0 {
+    color: #FB3AA2 !important;
+}
+
+.TimelineItemContentWrapper-sc-d7qjm1-0 {
+    padding: 40px !important;
+    border-right: #FB3AA2 4px solid !important;
+    transition: scale 0.3s ease-in-out !important;
+}
+
+.TimelineItemContentWrapper-sc-d7qjm1-0:hover{
+    transform: translateY(-10px) !important;
+    scale: 1.05 !important;
+}
+
+.CardTitleSemantic-sc-d7qjm1-4 {
+    font-weight: 900 !important;
+    font-size: 20px !important;
 }

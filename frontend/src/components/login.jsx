@@ -120,6 +120,15 @@ export const Login = () => {
                                 Regístrate
                             </Link>
                         </p>
+
+                        <p className="text-center text-sm text-white/80 mt-10 ">
+                            <Link
+                                to="/"
+                                className="text-white font-semibold  decoration-2 underline-offset-2 hover:scale-105 inline-block transition duration-200 ml-3"
+                            >
+                                Volver al inicio
+                            </Link>
+                        </p>
                     </div>
                 </div>
             </div>

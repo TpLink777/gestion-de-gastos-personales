@@ -38,7 +38,7 @@ router.delete('/delete/:id', [
 
 
 router.get('/validarEmail', [
-    query('email').isEmail().withMessage('debes ingresar el correo'),
+    query('correo').isEmail().withMessage('debes ingresar el correo'),
 
 ],Usuario.validarEmail)
 
@@ -49,3 +49,5 @@ router.post('/login', [
 ], Usuario.login)
 
 module.exports = router
+
+

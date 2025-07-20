@@ -1,9 +1,8 @@
 
-export const ValidacionDeCampos = (name, value,  todosLosValores = {}) => {
+export const ValidacionDeCampos = (name, value, todosLosValores = {}) => {
 
     let errores = ''
     const trimmed = value.trim()
-
 
     if (value.trim() === '') {
         return 'Este campo no puede estar vacío.'
@@ -19,6 +18,8 @@ export const ValidacionDeCampos = (name, value,  todosLosValores = {}) => {
             errores = 'Este campo no puede estar vacío.'
         } else if (value !== trimmed) {
             errores = 'No debe haber espacios al inicio o al final.'
+        } else if (/\s{2,}/.test(trimmed)) {
+            errores = 'No se permiten espacios múltiples entre palabras.'
         } else if (!regex.test(trimmed)) {
             errores = 'El correo debe tener un formato válido, como ejemplo@dominio.com.'
         } else {
@@ -122,6 +123,28 @@ export const ValidacionDeCampos = (name, value,  todosLosValores = {}) => {
             errores = '';
         }
     }
+
+
+    if (name === 'mensaje') {
+        const regex = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,;:()!?¡¿"'“”‘’\s]{50,1000}$/;
+
+        if (trimmed === '') {
+            errores = 'Este campo no puede estar vacío.';
+        } else if (value !== trimmed) {
+            errores = 'No debe haber espacios al inicio o al final.';
+        } else if (trimmed.length < 50) {
+            errores = 'El mensaje es demasiado corto (mínimo 50 caracteres).';
+        } else if (trimmed.length > 1000) {
+            errores = 'El mensaje es demasiado largo (máximo 1000 caracteres).';
+        } else if (!regex.test(trimmed)) {
+            errores = 'Solo se permiten letras, números, espacios y signos de puntuación comunes.';
+        } else if (/\s{2,}/.test(trimmed)) {
+            errores = 'No se permiten espacios múltiples seguidos.';
+        } else {
+            errores = '';
+        }
+    }
+
 
 
     return errores

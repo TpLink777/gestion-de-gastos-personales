@@ -3,17 +3,20 @@ import { ValidacionDeCampos } from '../helpers/validacionDeCampos'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import JSConfetti from 'js-confetti'
 
 export const usePassword = ({ datos, actualizar }) => {
 
     const [showPass1, setShowPass1] = useState(false)
     const [showPass2, setShowPass2] = useState(false)
     const [data, setData] = useState(datos);
-    const navigate = useNavigate();
 
     const [errores, setErrores] = useState({
         password: ''
     })
+
+    const navigate = useNavigate();
+    const jsConfetti = new JSConfetti()
 
 
 
@@ -63,6 +66,15 @@ export const usePassword = ({ datos, actualizar }) => {
             };
 
 
+            Swal.fire({
+                title: 'Cargando...',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+
             await axios.post('http://localhost:5000/api/usuarios/create', payload, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -77,9 +89,17 @@ export const usePassword = ({ datos, actualizar }) => {
             }).then(() => {
 
                 localStorage.removeItem('datosPersonales');
-                localStorage.removeItem('pasoActual');
+                localStorage.removeItem('Paso actual');
 
-                navigate('/');
+                jsConfetti.addConfetti({
+                    confettiColors: [
+                        '#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#f9bec7',
+                    ],
+                })
+
+                setTimeout(() => {
+                    navigate('/')
+                }, 2000)
             })
 
             console.log('usuario creado exitosamente')
