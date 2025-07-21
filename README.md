@@ -22,6 +22,7 @@ Extras	API de conversión de moneda (ej: ExchangeRate API)
 
 📁 Estructura de Carpetas
 
+```plaintext
 SistemaDeGestionDeGastosPersonales/
 ├── backend/               ← Servidor Node.js + Express
 │   ├── controllers/       ← Lógica de negocio (controladores)
@@ -45,12 +46,11 @@ SistemaDeGestionDeGastosPersonales/
 │   ├── main.jsx           ← Punto de entrada React
 │   └── Dockerfile         ← Imagen frontend para Docker
 │
-├── nginx/                 ← Configuración del servidor Nginx
-│   └── default.conf       ← Proxy del frontend y backend
 │
 ├── docker-compose.yml     ← Orquestación de servicios (frontend, backend, MySQL, nginx)
 ├── .gitignore             ← Ignorar archivos sensibles y temporales
 └── README.md              ← Documentación del proyecto
+```
 
 
 📂 Función de cada carpeta
